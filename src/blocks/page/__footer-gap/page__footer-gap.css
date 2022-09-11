@@ -1,0 +1,9 @@
+.page__footer-gap {
+    margin: 67px auto 0;
+}
+
+@media screen and (max-width: 568px) {
+    .page__footer-gap {
+        margin: 48px auto 0;
+    }
+}

@@ -1,0 +1,31 @@
+.registration__input {
+    max-width: 358px;
+    width: 100%;
+    margin-bottom: 30px;
+    height: 27px;
+    padding: 0;
+    font-family: 'Inter', Arial, sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.21; /*17px;*/
+    border: 0;
+    background: #000;
+    border-bottom: 2px solid #CCCCCC;
+    color: #FFF;
+    outline:none;
+}
+
+.registration__input:last-of-type {
+    margin-bottom: 0;
+}
+
+.registration__input::placeholder {
+    font-family: 'Inter', Arial, sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    color: #CCC;
+    margin: 0;
+}

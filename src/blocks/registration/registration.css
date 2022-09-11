@@ -1,0 +1,9 @@
+.registration {
+    color: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+    width: 88%;
+    max-width: 358px;
+    margin: 0;
+    
+}

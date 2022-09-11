@@ -1,0 +1,33 @@
+.popup__close-button {
+    position: absolute;
+    right: -40px;
+    top: -40px;
+    transition: opacity 0.3s ease-in-out;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    margin: 0;
+    padding: 0;
+    background-image: url(../../../images/cross-button_big.svg);
+    width: 32px;
+    height: 32px;
+}
+
+.popup__close-button:hover {
+    opacity: 0.6;
+}
+
+@media screen and (max-width: 649px) {
+    .popup__close-button {
+        right: 0;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .popup__close-button {
+        background-image: url(../../../images/cross-button_small.svg);
+        top: -36px;
+        width: 20px;
+        height: 20px;
+    }
+}

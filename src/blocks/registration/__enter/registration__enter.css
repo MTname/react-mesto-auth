@@ -1,0 +1,16 @@
+.registration__enter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 15px;
+    padding: 0;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.21; /*17px;*/
+}
+
+.registration__enter p {
+    margin: 0 5px 0 0;
+}

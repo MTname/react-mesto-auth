@@ -1,0 +1,9 @@
+.content__profile-gap {
+    margin-bottom: 50px;
+}
+
+@media screen and (max-width: 568px) {
+    .content__profile-gap {
+        margin-bottom: 36px;
+    }
+}

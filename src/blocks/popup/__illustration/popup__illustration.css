@@ -1,0 +1,9 @@
+.popup__illustration {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    position: relative;
+    margin: 0;
+    padding: 0;
+}
