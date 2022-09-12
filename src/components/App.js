@@ -1,5 +1,5 @@
 import 'index.css';
-import React, { useCallback } from "react";
+import { useCallback, useEffect, useState } from 'react';
 import { useHistory } from "react-router";
 import { Redirect, Route, Switch } from "react-router-dom";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
@@ -19,34 +19,35 @@ import Register from "./Register";
 
 function App() {
     
-    const [cards, setCards] = React.useState([]);
-    const [currentUser, setCurrentUser] = React.useState({});
-    const [successReg, setSuccessReg] = React.useState(false);
-    const [email, setEmail] = React.useState('');
+    const [cards, setCards] = useState([]);
+    const [currentUser, setCurrentUser] = useState({});
+    const [successReg, setSuccessReg] = useState(false);
+    const [loggedIn, setLoggedIn] = useState(false);
+    const [email, setEmail] = useState('');
     
     const history = useHistory();
     
-    const [isEditAvatarPopupOpen, setEditAvatarPopupOpen] = React.useState(false);
+    const [isEditAvatarPopupOpen, setEditAvatarPopupOpen] = useState(false);
     const handleEditAvatarClick = () => {
         setEditAvatarPopupOpen(!isEditAvatarPopupOpen);
     };
     
-    const [isEditProfilePopupOpen, setEditProfilePopupOpen] = React.useState(false);
+    const [isEditProfilePopupOpen, setEditProfilePopupOpen] = useState(false);
     const handleEditProfileClick = () => {
         setEditProfilePopupOpen(!isEditProfilePopupOpen);
     };
     
-    const [isAddPlacePopupOpen, setAddPlacePopupOpen] = React.useState(false);
+    const [isAddPlacePopupOpen, setAddPlacePopupOpen] = useState(false);
     const handleAddPlaceClick = () => {
         setAddPlacePopupOpen(!isAddPlacePopupOpen);
     };
     
-    const [selectedCard, setSelectedCard] = React.useState(null);
+    const [selectedCard, setSelectedCard] = useState(null);
     const handleCardClick = (card) => {
         setSelectedCard(card);
     };
 
-    const [isTooltipPopupOpen, setIsTooltipPopupOpen] = React.useState(false);
+    const [isTooltipPopupOpen, setIsTooltipPopupOpen] = useState(false);
     
     const closeAllPopups = () => {
         setEditAvatarPopupOpen(false);
@@ -58,7 +59,7 @@ function App() {
     
     // декларативное закрытие на Esc
     const isOpen = isEditAvatarPopupOpen || isEditProfilePopupOpen || isAddPlacePopupOpen || selectedCard || isTooltipPopupOpen;
-    React.useEffect(() => {
+    useEffect(() => {
         function handleEscClose(event) {
             if(event.key === 'Escape') {
                 closeAllPopups();
@@ -71,8 +72,7 @@ function App() {
             };
         }
     }, [isOpen]);
-
-    const [loggedIn, setLoggedIn] = React.useState(false);
+    
     const loginUser = useCallback(() => {
         setLoggedIn(true);
     }, []);
@@ -123,7 +123,7 @@ function App() {
     };
 
     // загрузка данных пользователя
-    React.useEffect(() => {
+    useEffect(() => {
         if (loggedIn) {
             api.getUser()
             .then((res) => setCurrentUser(res))
@@ -133,7 +133,7 @@ function App() {
     }, [loggedIn]);
     
     // загрузка карточек
-    React.useEffect(() => {
+    useEffect(() => {
         if (loggedIn) {
             api.getCards()
             .then((res) => setCards(res))
@@ -186,17 +186,19 @@ function App() {
         .catch((err) => console.log(err));
     }
     
-    React.useEffect(() => {
+    useEffect(() => {
         const jwt = localStorage.getItem('jwt');
         if (jwt) {
-            auth.checkToken(jwt).then((res) => { // проверяем токен пользователя
+            auth.checkToken(jwt)
+            .then((res) => { // проверяем токен пользователя
                 if (res) {
                     const email = (res.data.email);
                     setEmail(email);
                     loginUser();
                     history.push("/");
                 }
-            }); 
+            })
+            .catch((err) => console.log(err)); 
           }
     }, [loginUser, history, loggedIn]);
     

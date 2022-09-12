@@ -9,7 +9,6 @@ function checkResponse(res) {
       return Promise.reject(err);
     });
 }
-  
 
 export const register = (email, password) => {
     return fetch(`${BASE_URL}/signup`, {
